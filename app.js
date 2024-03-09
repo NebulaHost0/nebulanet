@@ -1,13 +1,8 @@
-const http = require('http')
-const hostname = '127.0.0.1';
-const port = 3000;
+const path = require('path');
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World! NodeJS \n');
-});
+const nextPath = path.join(__dirname, 'node_modules', '.bin', 'next');
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+process.argv.length = 1;
+process.argv.push(nextPath, 'start');
+
+require(nextPath);
